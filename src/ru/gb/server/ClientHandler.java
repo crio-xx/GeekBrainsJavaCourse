@@ -1,5 +1,7 @@
 package ru.gb.server;
 
+import ru.gb.db.User;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -68,15 +70,15 @@ public class ClientHandler {
 
         while (true) {
             String maybeCredentials = in.readUTF();
-            /** sample: -auth login1 password1 */
+            /* sample: -auth nick1 password1 */
             if (maybeCredentials.startsWith("-auth")) {
                 String[] credentials = maybeCredentials.split("\\s");
 
-                Optional<AuthService.Entry> maybeUser = server.getAuthService()
+                Optional<User> maybeUser = server.getAuthService()
                         .findUserByLoginAndPassword(credentials[1], credentials[2]);
 
                 if (maybeUser.isPresent()) {
-                    AuthService.Entry user = maybeUser.get();
+                    User user = maybeUser.get();
                     if (server.isNotUserOccupied(user.getName())) {
                         name = user.getName();
                         sendMessage("AUTH OK.");
