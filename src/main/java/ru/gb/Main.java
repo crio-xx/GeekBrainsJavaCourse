@@ -10,11 +10,25 @@ public class Main {
         graph1.addEdge(2, 8);
         graph1.addEdge(8, 10);
 
+        var start = System.nanoTime();
         System.out.println("dfs: " + Search.dfs(graph1, 1, 10));
-        System.out.println("dfs: " + Search.dfs(graph1, 1, 11));
+        var end = System.nanoTime();
+        System.out.println("Time: " + (end - start) + "\n");
 
+        start = System.nanoTime();
+        System.out.println("dfs: " + Search.dfs(graph1, 1, 11));
+        end = System.nanoTime();
+        System.out.println("Time: " + (end - start) + "\n");
+
+        start = System.nanoTime();
         System.out.println("bfs: " + Search.bfs(graph1, 1, 10));
+        end = System.nanoTime();
+        System.out.println("Time: " + (end - start) + "\n");
+
+        start = System.nanoTime();
         System.out.println("bfs: " + Search.bfs(graph1, 1, 11));
+        end = System.nanoTime();
+        System.out.println("Time: " + (end - start) + "\n");
 
     }
 }
